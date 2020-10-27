@@ -17,6 +17,33 @@
       <span class="face">😎</span>
     </h1>
 
+    <div id="app">
+      <div id="search">
+        <input v-model.trim="searchText" placeholder="Search for emoji..." autofocus />
+        <button type="button" v-if="searchText" @click="searchText = ''">&times;</button>
+      </div>
+      <div id="emojis-cards">
+        <div
+          v-for="emoji in searchedEmojis"
+          :key="emoji.name"
+          @click="copyToClipboard(emoji.name)"
+        >
+          <img :src="emoji.url" alt="emoji" />
+          <span>{{ emoji.name }}</span>
+        </div>
+      </div>
+      <transition name="fade">
+        <div id="notification" v-if="notification">
+          <p>Copied <strong>{{ notification }}</strong><br/>
+            to Clipboard!</p>
+        </div>
+      </transition>
+    </div>
+
+    <footer>
+      LacusSoft &copy; 2020 - All Rights Reserved
+    </footer>
+
     <script src="https://unpkg.com/axios@latest"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="./scripts.js"></script>
