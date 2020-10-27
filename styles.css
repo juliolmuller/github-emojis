@@ -1,0 +1,46 @@
+:root {
+  font-size: 60%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100px;
+}
+
+body {
+  background: #24243e;
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+}
+
+body, input {
+  font: 400 1.6rem 'Nanum Gothic Coding', monospace;
+  color: #fff;
+}
+
+h1 {
+  position: relative;
+  text-align: center;
+  margin: 6rem;
+}
+
+h1 .github {
+  font: 700 5rem 'Kufam', cursive;
+}
+
+h1 .emojis {
+  font: 400 5rem 'Chewy', cursive;
+}
+
+h1 .face {
+  position: absolute;
+  z-index: -1;
+  font-size: 7rem;
+  margin-top: -4rem;
+  margin-left: -1.5rem;
+}
