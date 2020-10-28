@@ -39,12 +39,12 @@ h1 .emojis {
   font: 400 5rem 'Chewy', cursive;
 }
 
-h1 .face {
+h1 .logo {
   position: absolute;
   z-index: -1;
   font-size: 7rem;
-  margin-top: -4rem;
-  margin-left: -1.5rem;
+  margin-top: -2.8rem;
+  margin-left: -1.2rem;
 }
 
 #app {
