@@ -1,3 +1,4 @@
+
 Vue.createApp({
   setup() {
     const emojis = Vue.ref({})
@@ -24,9 +25,9 @@ Vue.createApp({
         .map((key) => ({ name: `:${key}:`, url: emojis.value[key] }))
     })
 
-    axios
-      .get('https://api.github.com/emojis')
-      .then((response) => (emojis.value = response.data))
+    fetch('https://api.github.com/emojis')
+      .then((response) => response.json())
+      .then((data) => emojis.value = data)
 
     return {
       copyToClipboard,
