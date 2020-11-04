@@ -19,8 +19,13 @@
 
     <div id="app">
       <div id="search">
-        <input v-model.trim="searchText" placeholder="Search for emoji..." autofocus />
-        <button type="button" v-if="searchText" @click="searchText = ''">&times;</button>
+        <input
+          ref="searchInput"
+          v-model.trim="searchText"
+          placeholder="Search for emoji..."
+          autofocus
+        />
+        <button type="button" v-if="searchText" @click="clearSearch">&times;</button>
       </div>
       <div id="emojis-cards">
         <div

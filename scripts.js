@@ -3,6 +3,7 @@ Vue.createApp({
   setup() {
     const emojis = Vue.ref({})
     const searchText = Vue.ref('')
+    const searchInput = Vue.ref(null)
     const notification = Vue.ref('')
     const notificationTimeout = Vue.ref(null)
 
@@ -16,6 +17,11 @@ Vue.createApp({
             notification.value = ''
           }, 2000)
         })
+    }
+
+    const clearSearch = () => {
+      searchText.value = ''
+      searchInput.value.focus()
     }
 
     const searchedEmojis = Vue.computed(() => {
@@ -32,8 +38,10 @@ Vue.createApp({
     return {
       copyToClipboard,
       searchedEmojis,
-      searchText,
       notification,
+      clearSearch,
+      searchInput,
+      searchText,
     }
   }
 }).mount('#app')
