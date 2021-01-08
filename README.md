@@ -16,11 +16,7 @@
   <img src="https://img.shields.io/github/license/juliolmuller/github-emojis?labelColor=000000&color=24243e" alt="Project License" />
 </p>
 
-<br />
-<p align="center">
-  <img src="https://media-exp1.licdn.com/dms/image/C5622AQEkPrAL51hbTw/feedshare-shrink_1280-alternative/0?e=1606953600&v=beta&t=UL-BXWT_BEcv5aPWgVC-VDxy1r40oTIYbf05Qe-XW4Q" alt="Application Overview" width="100%">
-</p>
-<br />
+![GitHub Emojis snapshot](./.github/app-overview.jpg)
 
 A simple application that returns all the emojis available for use in GitHub markdown documents, fetching the list directly from GitHub API.
 
