@@ -2,13 +2,13 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true
+    node: true,
   },
   extends: [
+    '@nuxtjs/typescript',
     'lacussoft',
     'lacussoft/typescript',
-    '@nuxtjs/typescript',
-    'plugin:nuxt/recommended'
+    'plugin:nuxt/recommended',
   ],
-  rules: {}
+  rules: {},
 }
