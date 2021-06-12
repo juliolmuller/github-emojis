@@ -16,7 +16,7 @@
   <img src="https://img.shields.io/github/license/juliolmuller/github-emojis?labelColor=000000&color=24243e" alt="Project License" />
 </p>
 
-![GitHub Emojis snapshot](./.github/app-overview.jpg)
+![GitHub Emojis snapshot](./.github/app-overview.png)
 
 A simple application that returns all the emojis available for use in GitHub markdown documents, fetching the list directly from GitHub API.
 
@@ -25,7 +25,7 @@ A simple application that returns all the emojis available for use in GitHub mar
 ---
 
 <h2 align="center">
-  <a href="https://juliolmuller.github.io/github-emojis">ACCESS THE APPLICATION</a>
+  <a href="https://githubemojis.vercel.app/">ACCESS THE APPLICATION</a>
 </h2>
 
 ---
