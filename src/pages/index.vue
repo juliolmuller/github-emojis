@@ -5,6 +5,7 @@
     <div class="cards-deck">
       <EmojiCard
         v-for="emoji in visibleEmojis"
+        v-show="emoji.visible"
         :key="emoji.name"
         v-bind="emoji"
         @click="copyToClipboard"
@@ -37,10 +38,15 @@ export default defineComponent({
 
   computed: {
     visibleEmojis() {
+      const search = new RegExp(this.search, 'i')
+
       return Object
         .keys(this.emojis)
-        .filter((key) => (key.includes(this.search)))
-        .map((key) => ({ name: `:${key}:`, url: this.emojis[key] }))
+        .map((key) => ({
+          name: `:${key}:`,
+          url: this.emojis[key],
+          visible: !!key.match(search),
+        }))
     },
   },
 
