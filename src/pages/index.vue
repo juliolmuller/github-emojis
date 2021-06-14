@@ -59,15 +59,24 @@ export default defineComponent({
 
 <style lang="scss">
 #app {
-  flex: 1 0 auto;
-  width: 100%;
-  max-width: 1200px;
-  margin: 1rem auto;
-
   .cards-deck {
-    margin-top: 3rem;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+
+    margin: 0 1.5rem;
+
+    @media (min-width: 768px) {
+      & {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      & {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
   }
 }
 </style>

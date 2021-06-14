@@ -1,5 +1,9 @@
 <template>
-  <div class="emoji-card" @click="$emit('click', name)">
+  <div
+    class="emoji-card"
+    :title="`Click to copy ${name}`"
+    @click="$emit('click', name)"
+  >
     <img :src="url" alt="emoji">
     <span>{{ name }}</span>
   </div>
@@ -26,42 +30,35 @@ export default defineComponent({
 
 <style lang="scss">
 .emoji-card {
-  flex: 1 0 50%;
   display: flex;
   align-items: center;
 
-  position: relative;
-
-  height: 6rem;
-  border: 1px dotted transparent;
+  height: 7rem;
+  border: 1px dotted rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.05);
+
   transition: background-color 0.2s;
+  cursor: pointer;
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
   }
 
   &:active {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.3);
   }
 
   & > img {
-    margin: 1.5rem;
-    margin-left: 2rem;
+    margin: 1rem;
     width: 3rem
   }
 
   & > span {
-    flex-grow: 1;
-    font-weight: normal;
     user-select: none;
-    cursor: pointer;
-  }
+    overflow: hidden;
 
-  @media (min-width: 1000px) {
-    & {
-      flex-basis: 33.33%;
-    }
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }
 </style>

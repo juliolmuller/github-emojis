@@ -1,15 +1,17 @@
 <template>
   <div class="search-box">
-    <input
-      ref="searchInput"
-      placeholder="Search for emoji..."
-      autofocus
-      :value="value"
-      @input="handleSearch"
-    >
-    <button v-if="value" type="button" @click="clearSearch">
-      &times;
-    </button>
+    <div class="input-wrapper">
+      <input
+        ref="searchInput"
+        placeholder="Search for emoji..."
+        autofocus
+        :value="value"
+        @input="handleSearch"
+      >
+      <button v-if="value" type="button" @click="clearSearch">
+        &times;
+      </button>
+    </div>
   </div>
 </template>
 
@@ -55,43 +57,47 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
 
-  position: sticky;
+  margin-bottom: 3rem;
+  padding: 3rem;
 
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem;
+  .input-wrapper {
+    flex-basis: 100%;
+    display: flex;
 
-  input {
-    flex-grow: 1;
-
-    outline: none;
+    max-width: 900px;
+    border-radius: 2.4rem;
     border: 1px solid #fff;
-    border-radius: 2.5rem;
-    background: rgba(250, 250, 250, 0.4);
+    background: rgba(250, 250, 250, 0.2);
     padding: 1rem 2rem;
-
-    font-size: 2.4rem;
-    letter-spacing: 0.4rem;
 
     transition: background-color 200ms;
 
-    &:focus {
+    &:focus-within {
       background: transparent;
     }
-  }
 
-  button {
-    position: absolute;
-    right: 4rem;
+    input {
+      flex-grow: 1;
 
-    border: none;
-    outline: none;
-    background: transparent;
+      border: none;
+      outline: none;
+      background: transparent;
 
-    font-size: 2.4rem;
+      font-size: 2.4rem;
+      letter-spacing: 0.4rem;
 
-    cursor: pointer;
+      cursor: pointer;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      background: transparent;
+
+      font-size: 2.4rem;
+
+      cursor: pointer;
+    }
   }
 }
 </style>

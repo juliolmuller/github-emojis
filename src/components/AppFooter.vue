@@ -10,10 +10,12 @@ import { defineComponent } from '@nuxtjs/composition-api'
 export default defineComponent({
   name: 'AppFooter',
 
-  computed: {
-    currentYear() {
-      return new Date().getFullYear()
-    },
+  setup() {
+    const currentYear = new Date().getFullYear()
+
+    return {
+      currentYear,
+    }
   },
 })
 </script>
@@ -26,5 +28,9 @@ export default defineComponent({
 
   width: 100%;
   height: 8rem;
+  opacity: 0.5;
+
+  font-size: 1.5rem;
+  text-align: center;
 }
 </style>
