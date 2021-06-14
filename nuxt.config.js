@@ -39,7 +39,12 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    // https://gitlab.com/broj42/nuxt-lazy-load
+    ['nuxt-lazy-load', {
+      defaultImage: '/logo.png',
+    }],
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
