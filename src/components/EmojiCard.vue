@@ -4,7 +4,7 @@
     :title="`Click to copy ${name}`"
     @click="$emit('click', name)"
   >
-    <img :src="url" alt="emoji">
+    <nuxt-img format="webp" :src="url" alt="emoji" />
     <span>{{ name }}</span>
   </div>
 </template>

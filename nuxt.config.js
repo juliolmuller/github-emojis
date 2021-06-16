@@ -40,12 +40,13 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://gitlab.com/broj42/nuxt-lazy-load
-    ['nuxt-lazy-load', {
-      defaultImage: '/logo.png',
-    }],
+    // https://image.nuxtjs.org/
+    '@nuxt/image',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  // Image optimization options: https://image.nuxtjs.org/components/nuxt-img
+  image: {},
 }
