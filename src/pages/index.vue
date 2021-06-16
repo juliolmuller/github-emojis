@@ -42,6 +42,7 @@ export default defineComponent({
     const response = await fetch('https://api.github.com/emojis')
     const emojis = await response.json()
 
+    this.displayCount = 1000 * 10
     this.emojis = Object
       .keys(emojis)
       .map((key) => ({
