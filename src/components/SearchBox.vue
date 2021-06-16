@@ -11,6 +11,11 @@
       <button v-if="value" type="button" @click="clearSearch">
         &times;
       </button>
+      <img
+        v-else
+        src="/icon-search.svg"
+        alt="search icon"
+      >
     </div>
   </div>
 </template>
@@ -89,7 +94,8 @@ export default defineComponent({
       cursor: pointer;
     }
 
-    button {
+    button, img {
+      height: 2.4rem;
       border: none;
       outline: none;
       background: transparent;
