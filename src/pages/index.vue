@@ -12,7 +12,7 @@
       />
     </div>
 
-    <div class="loading">
+    <div v-if="isLoading" class="loading">
       <img src="/loading.svg">
     </div>
 
@@ -24,34 +24,52 @@
 import { defineComponent } from '@nuxtjs/composition-api'
 
 const NOTIFICATION_DURATION = 2000
+const DEFAULT_DISPLAY_STEP = 300
 
 export default defineComponent({
   data() {
     return {
       notificationTimeout: 0,
+      displayCount: 100,
       notification: '',
+      isLoading: true,
       search: '',
-      emojis: {},
+      emojis: [],
     }
   },
 
   async fetch() {
     const response = await fetch('https://api.github.com/emojis')
-    this.emojis = await response.json()
+    const emojis = await response.json()
+
+    this.emojis = Object
+      .keys(emojis)
+      .map((key) => ({
+        name: `:${key}:`,
+        url: emojis[key],
+        visible: true,
+      }))
   },
 
   computed: {
     visibleEmojis() {
       const search = new RegExp(this.search, 'i')
 
-      return Object
-        .keys(this.emojis)
-        .map((key) => ({
-          name: `:${key}:`,
-          url: this.emojis[key],
-          visible: !!key.match(search),
-        }))
+      return this.emojis
+        .filter((_, index) => this.displayCount > index)
+        .map((emoji) => ({ ...emoji, visible: !!emoji.name.match(search) }))
     },
+  },
+
+  mounted() {
+    const interval = setInterval(() => {
+      if (this.displayCount < this.emojis.length) {
+        this.displayCount += DEFAULT_DISPLAY_STEP
+      } else {
+        clearInterval(interval)
+        this.isLoading = false
+      }
+    }, 1000)
   },
 
   methods: {
@@ -87,6 +105,14 @@ export default defineComponent({
         grid-template-columns: 1fr 1fr 1fr;
       }
     }
+  }
+
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 15vh;
   }
 }
 </style>
