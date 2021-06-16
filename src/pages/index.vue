@@ -13,7 +13,7 @@
     </div>
 
     <div v-if="isLoading" class="loading">
-      <img src="/loading.svg">
+      <img src="/loading.svg" alt="loading spinner">
     </div>
 
     <Notification :message="notification" />

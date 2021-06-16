@@ -3,7 +3,10 @@
     <h1>
       <span class="github">GitHub</span>
       <span class="emojis">emojis</span>
-      <img src="/logo.png" alt="logo" class="logo">
+      <figure class="logo">
+        <img src="/logo.png" alt="logo" width="75">
+        <figcaption>GitHub Emojis Search App</figcaption>
+      </figure>
     </h1>
   </header>
 </template>
@@ -39,7 +42,9 @@
       right: 0;
       top: -18px;
 
-      width: 75px;
+      figcaption {
+        display: none;
+      }
     }
   }
 }

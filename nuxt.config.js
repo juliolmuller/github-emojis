@@ -1,14 +1,16 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'GitHub Emojis',
+    title: 'GitHub Emojis Search App',
     htmlAttrs: {
       lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'A straight forward search application for emojis supported by GitHub' },
+      { hid: 'keywords', name: 'keywords', content: 'github, emojis, markdown, github emojis, search' },
+      { hid: 'author', name: 'author', content: 'Julio L. Muller' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
