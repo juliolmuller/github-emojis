@@ -50,5 +50,9 @@ export default {
   build: {},
 
   // Image optimization options: https://image.nuxtjs.org/components/nuxt-img
-  image: {},
+  image: {
+    domains: [
+      'github.githubassets.com',
+    ],
+  },
 }
