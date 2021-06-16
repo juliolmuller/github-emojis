@@ -12,6 +12,10 @@
       />
     </div>
 
+    <div class="loading">
+      <img src="/loading.svg">
+    </div>
+
     <Notification :message="notification" />
   </div>
 </template>
