@@ -30,7 +30,7 @@ export default defineComponent({
   data() {
     return {
       notificationTimeout: 0,
-      displayCount: 100,
+      displayCount: 100 * 100,
       notification: '',
       isLoading: true,
       search: '',
@@ -42,7 +42,6 @@ export default defineComponent({
     const response = await fetch('https://api.github.com/emojis')
     const emojis = await response.json()
 
-    this.displayCount = 1000 * 10
     this.emojis = Object
       .keys(emojis)
       .map((key) => ({
@@ -50,6 +49,7 @@ export default defineComponent({
         url: emojis[key],
         visible: true,
       }))
+    this.displayCount = 100
   },
 
   computed: {
