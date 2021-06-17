@@ -4,9 +4,10 @@
       <input
         ref="searchInput"
         placeholder="Search for emoji..."
+        capitalize="false"
         autofocus
         :value="value"
-        @input="handleSearch"
+        @keyup="handleSearch"
       >
       <button v-if="value" type="button" @click="clearSearch">
         &times;
@@ -20,7 +21,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent, ref } from '@nuxtjs/composition-api'
 
 export default defineComponent({
@@ -36,15 +37,23 @@ export default defineComponent({
   emits: ['input'],
 
   setup(props, { emit }) {
-    const searchInput = ref<HTMLInputElement>()
-
-    function handleSearch(event: InputEvent) {
-      emit('input', (event.target as HTMLInputElement)?.value.trim())
-    }
+    const searchInput = ref()
 
     function clearSearch() {
-      searchInput.value?.focus()
+      searchInput.value.focus()
       emit('input', '')
+    }
+
+    function handleSearch(event) {
+      if (event.key === 'Escape') {
+        clearSearch()
+        return
+      }
+
+      const typedValue = (event.target.value ?? '')
+      const escapedValue = typedValue.replace(/\\/g, '')
+
+      emit('input', escapedValue)
     }
 
     return {
