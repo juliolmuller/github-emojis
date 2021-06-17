@@ -1,10 +1,11 @@
 <template>
   <div
+    v-once
     class="emoji-card"
     :title="`Click to copy ${name}`"
     @click="$emit('click', name)"
   >
-    <nuxt-img format="webp" :src="url" alt="emoji preview" />
+    <img :src="url" alt="emoji preview">
     <span>{{ name }}</span>
   </div>
 </template>

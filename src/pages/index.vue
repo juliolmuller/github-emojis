@@ -24,13 +24,13 @@
 import { defineComponent } from '@nuxtjs/composition-api'
 
 const NOTIFICATION_DURATION = 2000
-const DEFAULT_DISPLAY_STEP = 300
+const DEFAULT_DISPLAY_STEP = 20
 
 export default defineComponent({
   data() {
     return {
       notificationTimeout: 0,
-      displayCount: 100 * 100,
+      displayCount: 200,
       notification: '',
       isLoading: true,
       search: '',
@@ -49,7 +49,6 @@ export default defineComponent({
         url: emojis[key],
         visible: true,
       }))
-    this.displayCount = 100
   },
 
   computed: {
@@ -70,7 +69,7 @@ export default defineComponent({
         clearInterval(interval)
         this.isLoading = false
       }
-    }, 1000)
+    }, 100)
   },
 
   methods: {
