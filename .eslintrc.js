@@ -10,5 +10,8 @@ module.exports = {
     'lacussoft/typescript',
     'plugin:nuxt/recommended',
   ],
-  rules: {},
+  rules: {
+    'linebreak-style': ['error', 'unix'],
+    'vue/script-setup-uses-vars': 'off',
+  },
 }
