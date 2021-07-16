@@ -30,7 +30,7 @@ export default defineComponent({
     return {
       notificationTimeout: 0,
       notification: '',
-      isLoading: true,
+      isLoading: false,
       search: '',
       emojis: [],
     }
