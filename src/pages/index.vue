@@ -24,13 +24,11 @@
 import { defineComponent } from '@nuxtjs/composition-api'
 
 const NOTIFICATION_DURATION = 2000
-const DEFAULT_DISPLAY_STEP = 20
 
 export default defineComponent({
   data() {
     return {
       notificationTimeout: 0,
-      displayCount: 200,
       notification: '',
       isLoading: true,
       search: '',
@@ -55,21 +53,11 @@ export default defineComponent({
     visibleEmojis() {
       const search = new RegExp(this.search, 'i')
 
-      return this.emojis
-        .filter((_, index) => this.displayCount > index)
-        .map((emoji) => ({ ...emoji, visible: !!emoji.name.match(search) }))
+      return this.emojis.map((emoji) => ({
+        ...emoji,
+        visible: !!emoji.name.match(search),
+      }))
     },
-  },
-
-  mounted() {
-    const interval = setInterval(() => {
-      if (this.displayCount < this.emojis.length) {
-        this.displayCount += DEFAULT_DISPLAY_STEP
-      } else {
-        clearInterval(interval)
-        this.isLoading = false
-      }
-    }, 100)
   },
 
   methods: {
