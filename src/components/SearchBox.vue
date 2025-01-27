@@ -1,19 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-interface SearchBoxProps {
-  value: string;
-}
-
-defineProps<SearchBoxProps>();
-
-const emit = defineEmits(['input']);
+const model = defineModel<string>();
 
 const searchInput = ref()
 
 function clearSearch() {
   searchInput.value.focus()
-  emit('input', '')
+  model.value = ''
 }
 
 function handleSearch(event: KeyboardEvent) {
@@ -26,7 +20,7 @@ function handleSearch(event: KeyboardEvent) {
   const typedValue = eventTarget?.value ?? ''
   const escapedValue = typedValue.replace(/\\/g, '')
 
-  emit('input', escapedValue)
+  model.value = escapedValue
 }
 </script>
 
@@ -38,10 +32,10 @@ function handleSearch(event: KeyboardEvent) {
         placeholder="Search for emoji..."
         capitalize="false"
         autofocus
-        :value="value"
+        :value="model"
         @keyup="handleSearch"
       >
-      <button v-if="value" type="button" @click="clearSearch">
+      <button v-if="model" type="button" @click="clearSearch">
         &times;
       </button>
       <img
