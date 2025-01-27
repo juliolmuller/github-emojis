@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useFetch } from 'nuxt/app'
 import { computed, ref } from 'vue'
 
 interface Emoji {
@@ -11,7 +12,17 @@ const notification = ref('')
 const notificationTimeout = ref<NodeJS.Timeout | number>(0)
 const isLoading = ref(false)
 const searchText = ref('')
-const emojis = ref<Emoji[]>([])
+
+const response = await useFetch<Record<string, string>>('https://api.github.com/emojis')
+const emojis = ref<Emoji[]>(
+  Object
+    .entries(response.data.value!)
+    .map(([key, value]) => ({
+      name: `:${key}:`,
+      url: value,
+      visible: true,
+    }))
+)
 
 const visibleEmojis = computed(() => {
   const searchPattern = new RegExp(searchText.value, 'i')
@@ -21,19 +32,6 @@ const visibleEmojis = computed(() => {
     visible: !!emoji.name.match(searchPattern),
   }))
 })
-
-async function fetchEmojis() {
-  const response = await fetch('https://api.github.com/emojis')
-  const emojis = await response.json()
-
-  emojis.value = Object
-    .keys(emojis)
-    .map((key) => ({
-      name: `:${key}:`,
-      url: emojis[key],
-      visible: true,
-    }))
-}
 
 async function copyToClipboard(text: string) {
   await navigator.clipboard.writeText(text)
