@@ -1,31 +1,24 @@
 {
   "name": "github-emojis",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "private": true,
   "license": "MIT",
   "author": "Julio L. Muller",
+  "homepage": "https://githubemojis.vercel.app/",
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint": "eslint . --fix --ext \".js,.ts,.vue\" --ignore-path .gitignore"
+    "postinstall": "nuxt prepare",
+    "dev": "nuxt dev --open",
+    "build": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint": "eslint --fix --ext=.js,.ts,.vue src/"
   },
   "dependencies": {
-    "@nuxtjs/composition-api": "^0.33.1",
-    "nuxt": "^2.15.8"
+    "@nuxtjs/fontaine": "0.4.4",
+    "nuxt": "^3.15.3",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@nuxt/types": "^2.15.8",
-    "@nuxt/typescript-build": "^2.1.0",
-    "@nuxtjs/eslint-config-typescript": "^10.0.0",
-    "@nuxtjs/eslint-module": "^3.1.0",
-    "babel-eslint": "^10.1.0",
-    "core-js": "^3.24.1",
-    "eslint": "^7.32.0",
-    "eslint-config-lacussoft": "^2.3.0",
-    "eslint-plugin-nuxt": "^3.2.0",
-    "sass": "^1.54.1",
-    "sass-loader": "^10.1.1"
+    "sass-embedded": "^1.83.4"
   }
 }

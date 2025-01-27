@@ -1,6 +1,51 @@
+<script setup lang="ts">
+import { useFetch } from 'nuxt/app'
+import { computed, ref } from 'vue'
+
+interface Emoji {
+  name: string
+  url: string
+  visible: boolean
+}
+
+const notification = ref('')
+const notificationTimeout = ref<NodeJS.Timeout | number>(0)
+const isLoading = ref(false)
+const searchText = ref('')
+
+const response = await useFetch<Record<string, string>>('https://api.github.com/emojis')
+const emojis = ref<Emoji[]>(
+  Object
+    .entries(response.data.value!)
+    .map(([key, value]) => ({
+      name: `:${key}:`,
+      url: value,
+      visible: true,
+    }))
+)
+
+const visibleEmojis = computed(() => {
+  const searchPattern = new RegExp(searchText.value, 'i')
+
+  return emojis.value.map((emoji) => ({
+    ...emoji,
+    visible: !!emoji.name.match(searchPattern),
+  }))
+})
+
+async function copyToClipboard(text: string) {
+  await navigator.clipboard.writeText(text)
+  clearTimeout(notificationTimeout.value)
+  notification.value = `Copied <strong>${text}</strong><br> to Clipboard!`
+  notificationTimeout.value = setTimeout(() => {
+    notification.value = ''
+  }, 2000)
+}
+</script>
+
 <template>
   <div id="app">
-    <SearchBox v-model="search" />
+    <SearchBox v-model="searchText" />
 
     <div class="cards-deck">
       <EmojiCard
@@ -13,65 +58,12 @@
     </div>
 
     <div v-if="isLoading" class="loading">
-      <img src="/loading.svg" alt="loading spinner">
+      <img src="/img/loading.svg" alt="loading spinner">
     </div>
 
     <Notification :message="notification" />
   </div>
 </template>
-
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
-
-const NOTIFICATION_DURATION = 2000
-
-export default defineComponent({
-  data() {
-    return {
-      notificationTimeout: 0,
-      notification: '',
-      isLoading: false,
-      search: '',
-      emojis: [],
-    }
-  },
-
-  async fetch() {
-    const response = await fetch('https://api.github.com/emojis')
-    const emojis = await response.json()
-
-    this.emojis = Object
-      .keys(emojis)
-      .map((key) => ({
-        name: `:${key}:`,
-        url: emojis[key],
-        visible: true,
-      }))
-  },
-
-  computed: {
-    visibleEmojis() {
-      const search = new RegExp(this.search, 'i')
-
-      return this.emojis.map((emoji) => ({
-        ...emoji,
-        visible: !!emoji.name.match(search),
-      }))
-    },
-  },
-
-  methods: {
-    async copyToClipboard(text) {
-      await navigator.clipboard.writeText(text)
-      clearTimeout(this.notificationTimeout)
-      this.notification = `Copied <strong>${text}</strong><br> to Clipboard!`
-      this.notificationTimeout = setTimeout(() => {
-        this.notification = ''
-      }, NOTIFICATION_DURATION)
-    },
-  },
-})
-</script>
 
 <style lang="scss">
 #app {

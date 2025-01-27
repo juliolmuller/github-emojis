@@ -1,3 +1,13 @@
+<script setup lang="ts">
+interface EmojiCardProps {
+  name: string;
+  url: string;
+}
+
+defineProps<EmojiCardProps>();
+defineEmits(['click']);
+</script>
+
 <template>
   <div
     v-once
@@ -9,25 +19,6 @@
     <span>{{ name }}</span>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  name: 'EmojiCard',
-
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
-  },
-})
-</script>
 
 <style lang="scss">
 .emoji-card {

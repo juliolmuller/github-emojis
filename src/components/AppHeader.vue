@@ -4,14 +4,15 @@
       <span class="github">GitHub</span>
       <span class="emojis">emojis</span>
       <figure class="logo">
-        <img src="/logo.png" alt="logo" width="75">
+        <img src="/img/logo.png" alt="logo" width="75">
         <figcaption>GitHub Emojis Search App</figcaption>
       </figure>
     </h1>
+
     <span>
       Developed with ♥ by <strong>Julio L. Muller</strong> •
       <a href="https://github.com/juliolmuller/github-emojis" target="_blank">
-        Check out on <img src="/icon-github.svg" alt="GitHub">
+        Check out on <img src="/img/icon-github.svg" alt="GitHub">
       </a>
     </span>
   </header>

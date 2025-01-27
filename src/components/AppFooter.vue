@@ -1,24 +1,12 @@
+<script setup lang="ts">
+const currentYear = new Date().getFullYear()
+</script>
+
 <template>
   <footer class="app-footer">
     LacusSoft &copy; {{ currentYear }} - All Rights Reserved
   </footer>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  name: 'AppFooter',
-
-  setup() {
-    const currentYear = new Date().getFullYear()
-
-    return {
-      currentYear,
-    }
-  },
-})
-</script>
 
 <style lang="scss">
 .app-footer {

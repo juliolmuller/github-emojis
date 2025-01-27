@@ -1,26 +1,18 @@
+<script setup lang="ts">
+interface NotificationProps {
+  message?: string;
+}
+
+defineProps<NotificationProps>();
+</script>
+
 <template>
   <transition name="fade">
     <div v-if="message" class="notification">
-      {{ /* eslint-disable-next-line vue/no-v-html */ }}
       <p v-html="message" />
     </div>
   </transition>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  name: 'Notification',
-
-  props: {
-    message: {
-      type: String,
-      default: null,
-    },
-  },
-})
-</script>
 
 <style lang="scss">
 .notification {
