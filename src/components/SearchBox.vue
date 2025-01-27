@@ -1,3 +1,35 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+
+interface SearchBoxProps {
+  value: string;
+}
+
+defineProps<SearchBoxProps>();
+
+const emit = defineEmits(['input']);
+
+const searchInput = ref()
+
+function clearSearch() {
+  searchInput.value.focus()
+  emit('input', '')
+}
+
+function handleSearch(event: KeyboardEvent) {
+  if (event.key === 'Escape') {
+    clearSearch()
+    return
+  }
+
+  const eventTarget = event.target as HTMLInputElement
+  const typedValue = eventTarget?.value ?? ''
+  const escapedValue = typedValue.replace(/\\/g, '')
+
+  emit('input', escapedValue)
+}
+</script>
+
 <template>
   <div class="search-box">
     <div class="input-wrapper">
@@ -14,56 +46,12 @@
       </button>
       <img
         v-else
-        src="/icon-search.svg"
+        src="/img/icon-search.svg"
         alt="search icon"
       >
     </div>
   </div>
 </template>
-
-<script>
-import { defineComponent, ref } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  name: 'SearchBox',
-
-  props: {
-    value: {
-      type: String,
-      required: true,
-    },
-  },
-
-  emits: ['input'],
-
-  setup(props, { emit }) {
-    const searchInput = ref()
-
-    function clearSearch() {
-      searchInput.value.focus()
-      emit('input', '')
-    }
-
-    function handleSearch(event) {
-      if (event.key === 'Escape') {
-        clearSearch()
-        return
-      }
-
-      const typedValue = (event.target.value ?? '')
-      const escapedValue = typedValue.replace(/\\/g, '')
-
-      emit('input', escapedValue)
-    }
-
-    return {
-      searchInput,
-      handleSearch,
-      clearSearch,
-    }
-  },
-})
-</script>
 
 <style lang="scss">
 .search-box {

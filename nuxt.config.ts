@@ -23,14 +23,15 @@ export default defineNuxtConfig({
     },
   },
 
-  css: [],
   devtools: {
     enabled: true,
   },
   srcDir: 'src/',
+  css: ['~/styles.scss'],
 
   compatibilityDate: '2024-11-01',
   future: {
     compatibilityVersion: 4,
   },
+  modules: ['@nuxtjs/fontaine'],
 })
