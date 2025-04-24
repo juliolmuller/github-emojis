@@ -3,10 +3,10 @@ import { ref } from 'vue';
 
 const model = defineModel<string>();
 
-const searchInput = ref();
+const searchInputRef = ref<HTMLInputElement>();
 
 function clearSearch(): void {
-  searchInput.value.focus();
+  searchInputRef.value?.focus();
   model.value = '';
 }
 
@@ -28,7 +28,7 @@ function handleSearch(event: KeyboardEvent): void {
   <div class="search-box">
     <div class="input-wrapper">
       <input
-        ref="searchInput"
+        ref="searchInputRef"
         placeholder="Search for emoji..."
         capitalize="false"
         autofocus
