@@ -1,6 +1,6 @@
 <h1 align="center">
   GitHub
-  <img src="./.github/logo.png" alt="logo" height="24" />
+  <img src="https://github.com/user-attachments/assets/b54b0f23-95b4-4808-b5a9-c4d09fa7c78f" alt="logo" height="24" />
   Emojis
 </h1>
 
@@ -22,7 +22,7 @@
   <img src="https://img.shields.io/github/license/juliolmuller/github-emojis?labelColor=000000&color=108775" alt="Project License" />
 </p>
 
-![GitHub Emojis snapshot](./.github/app-overview.png)
+![GitHub Emojis snapshot](https://github.com/user-attachments/assets/58672ca4-b8ee-48f9-81ff-dbe73f705cc2)
 
 This application was developed dues to personal motivation, as I usually get through the need of finding a nice emoji to add to a project *MarkDown*-based documentation. For this reason, I took the challenge to develope a handy, performant and responsive website to search for it.
 
