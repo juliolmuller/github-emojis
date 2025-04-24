@@ -3,24 +3,24 @@ import { ref } from 'vue';
 
 const model = defineModel<string>();
 
-const searchInput = ref()
+const searchInput = ref();
 
-function clearSearch() {
-  searchInput.value.focus()
-  model.value = ''
+function clearSearch(): void {
+  searchInput.value.focus();
+  model.value = '';
 }
 
-function handleSearch(event: KeyboardEvent) {
+function handleSearch(event: KeyboardEvent): void {
   if (event.key === 'Escape') {
-    clearSearch()
-    return
+    clearSearch();
+    return;
   }
 
-  const eventTarget = event.target as HTMLInputElement
-  const typedValue = eventTarget?.value ?? ''
-  const escapedValue = typedValue.replace(/\\/g, '')
+  const eventTarget = event.target as HTMLInputElement;
+  const typedValue = eventTarget?.value ?? '';
+  const escapedValue = typedValue.replace(/\\/g, '');
 
-  model.value = escapedValue
+  model.value = escapedValue;
 }
 </script>
 
@@ -34,15 +34,9 @@ function handleSearch(event: KeyboardEvent) {
         autofocus
         :value="model"
         @keyup="handleSearch"
-      >
-      <button v-if="model" type="button" @click="clearSearch">
-        &times;
-      </button>
-      <img
-        v-else
-        src="/img/icon-search.svg"
-        alt="search icon"
-      >
+      />
+      <button v-if="model" type="button" @click="clearSearch">&times;</button>
+      <img v-else src="/img/icon-search.svg" alt="search icon" />
     </div>
   </div>
 </template>
@@ -85,7 +79,8 @@ function handleSearch(event: KeyboardEvent) {
       cursor: pointer;
     }
 
-    button, img {
+    button,
+    img {
       height: 2.4rem;
       border: none;
       outline: none;
