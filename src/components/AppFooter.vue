@@ -1,11 +1,9 @@
 <script setup lang="ts">
-const currentYear = new Date().getFullYear()
+const currentYear = new Date().getFullYear();
 </script>
 
 <template>
-  <footer class="app-footer">
-    LacusSoft &copy; {{ currentYear }} - All Rights Reserved
-  </footer>
+  <footer class="app-footer">LacusSoft &copy; {{ currentYear }} - All Rights Reserved</footer>
 </template>
 
 <style lang="scss">

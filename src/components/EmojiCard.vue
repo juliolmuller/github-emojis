@@ -9,13 +9,8 @@ defineEmits(['click']);
 </script>
 
 <template>
-  <div
-    v-once
-    class="emoji-card"
-    :title="`Click to copy ${name}`"
-    @click="$emit('click', name)"
-  >
-    <img :src="url" alt="emoji preview">
+  <div v-once class="emoji-card" :title="`Click to copy ${name}`" @click="$emit('click', name)">
+    <img :src="url" alt="emoji preview" />
     <span>{{ name }}</span>
   </div>
 </template>
@@ -42,7 +37,7 @@ defineEmits(['click']);
 
   & > img {
     margin: 1rem;
-    width: 3rem
+    width: 3rem;
   }
 
   & > span {

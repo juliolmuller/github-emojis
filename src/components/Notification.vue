@@ -9,6 +9,7 @@ defineProps<NotificationProps>();
 <template>
   <transition name="fade">
     <div v-if="message" class="notification">
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <p v-html="message" />
     </div>
   </transition>
@@ -37,8 +38,9 @@ defineProps<NotificationProps>();
   }
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;

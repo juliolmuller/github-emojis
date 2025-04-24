@@ -1,45 +1,45 @@
 <script setup lang="ts">
-import { useFetch } from 'nuxt/app'
-import { computed, ref } from 'vue'
+import { useFetch } from 'nuxt/app';
+import { computed, ref } from 'vue';
 
 interface Emoji {
-  name: string
-  url: string
-  visible: boolean
+  name: string;
+  url: string;
+  visible: boolean;
 }
 
-const notification = ref('')
-const notificationTimeout = ref<NodeJS.Timeout | number>(0)
-const isLoading = ref(false)
-const searchText = ref('')
+type TimeoutID = number | ReturnType<typeof setTimeout>;
 
-const response = await useFetch<Record<string, string>>('https://api.github.com/emojis')
+const notification = ref('');
+const notificationTimeout = ref<TimeoutID>(0);
+const isLoading = ref(false);
+const searchText = ref('');
+
+const response = await useFetch<Record<string, string>>('https://api.github.com/emojis');
 const emojis = ref<Emoji[]>(
-  Object
-    .entries(response.data.value!)
-    .map(([key, value]) => ({
-      name: `:${key}:`,
-      url: value,
-      visible: true,
-    }))
-)
+  Object.entries(response.data.value!).map(([key, value]) => ({
+    name: `:${key}:`,
+    url: value,
+    visible: true,
+  })),
+);
 
 const visibleEmojis = computed(() => {
-  const searchPattern = new RegExp(searchText.value, 'i')
+  const searchPattern = new RegExp(searchText.value, 'i');
 
   return emojis.value.map((emoji) => ({
     ...emoji,
     visible: !!emoji.name.match(searchPattern),
-  }))
-})
+  }));
+});
 
-async function copyToClipboard(text: string) {
-  await navigator.clipboard.writeText(text)
-  clearTimeout(notificationTimeout.value)
-  notification.value = `Copied <strong>${text}</strong><br> to Clipboard!`
+async function copyToClipboard(text: string): Promise<void> {
+  await navigator.clipboard.writeText(text);
+  clearTimeout(notificationTimeout.value);
+  notification.value = `Copied <strong>${text}</strong><br> to Clipboard!`;
   notificationTimeout.value = setTimeout(() => {
-    notification.value = ''
-  }, 2000)
+    notification.value = '';
+  }, 2000);
 }
 </script>
 
@@ -58,7 +58,7 @@ async function copyToClipboard(text: string) {
     </div>
 
     <div v-if="isLoading" class="loading">
-      <img src="/img/loading.svg" alt="loading spinner">
+      <img src="/img/loading.svg" alt="loading spinner" />
     </div>
 
     <Notification :message="notification" />
