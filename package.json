@@ -7,7 +7,7 @@
   "homepage": "https://githubemojis.vercel.app/",
   "scripts": {
     "prepare": "husky",
-    "commit": "git-cz",
+    "commit": "commit",
     "postinstall": "nuxt prepare",
     "dev": "nuxt dev --open",
     "build": "nuxt generate",
@@ -19,18 +19,17 @@
     "@nuxtjs/fontaine": "~0.5.0",
     "nuxt": "^3.16.2",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
+    "@commitlint/prompt-cli": "^19.8.0",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.1",
+    "@semantic-release/github": "^11.0.2",
     "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^14.0.3",
-    "commitizen": "^4.3.1",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.25.1",
     "eslint-config-any": "^1.1.0",
     "husky": "^9.1.7",
